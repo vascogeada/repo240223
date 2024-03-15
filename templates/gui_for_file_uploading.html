@@ -1,0 +1,48 @@
+<!-- gui.html - this is the HTML file used by the Flask app, as a template -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>File Upload GUI</title>
+</head>
+<body>
+
+<!--
+notice that the name attribute is NOT in use!
+uploading will only work, because the post's FormData will be built in JS
+-->
+<input
+    type="file"
+    id="idFile"
+>
+<button
+    onclick="uploadFile()"
+>Upload</button>
+
+<hr>
+<h2>NO JS required - the following form uses only browser mechanisms, for the upload</h2>
+<form
+    action="/upload"
+    method="post"
+    enctype="multipart/form-data"
+>
+  Select image to upload:
+  <input type="file"
+         name="post_file"
+         id="idFileToUpload"
+  >
+  <input type="submit"
+         value="Upload file"
+         name="submit"
+  >
+</form>
+
+<!-- at the end, for performance loading -->
+<!-- but this is only correct from plain HTML, not for HTML templates for Flask apps -->
+<!--
+<script src="upload.js"></script>
+-->
+<script src="{{ url_for('static', filename='upload.js') }}"></script>
+
+</body>
+</html>
+<!-- gui.html ends -->
